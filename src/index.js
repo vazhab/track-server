@@ -1,8 +1,14 @@
+require('./models/User');
 const express = require('express');
 const mongoose = require('mongoose');
-const { SECRET_MONGO_URI } = require('./constant');
+const bodyParser = require('body-parser');
+const { SECRET_MONGO_URI } = require('./constants');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(authRoutes);
 
 const mongoUri = SECRET_MONGO_URI;
 
